@@ -11,6 +11,9 @@ function solve() {
    */
 
   // блаблабла
+
+
+  
 }
 
 function isSolved() {

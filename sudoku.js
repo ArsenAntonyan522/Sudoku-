@@ -1,15 +1,37 @@
+const fs = require('fs');
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  return fs.readFileSync('./puzzles.txt', 'utf-8');
 }
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+const readFile = read();
+
+function solve(read) {
+  const string = read.slice(0, 81);
+
+  const firstString = string.slice(0, 9).split('');
+  const secondString = string.slice(9, 18).split('');
+  const thirdString = string.slice(18, 27).split('');
+  const fourthString = string.slice(27, 36).split('');
+  const fifthString = string.slice(36, 45).split('');
+  const sixString = string.slice(45, 54).split('');
+  const sevenString = string.slice(54, 63).split('');
+  const eightString = string.slice(63, 72).split('');
+  const nineString = string.slice(72, 81).split('');
+
+  const boardLines = [
+    firstString,
+    secondString,
+    thirdString,
+    fourthString,
+    fifthString,
+    sixString,
+    sevenString,
+    eightString,
+    nineString,
+  ];
+  return boardLines;
 }
+console.table(solve(readFile));
 
 function isSolved() {
   /**

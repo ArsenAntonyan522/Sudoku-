@@ -5,6 +5,45 @@ function read() {
   const sudokuPack = puzzles.split('\r\n');
   const sudoku = sudokuPack[process.argv[2]];
   return sudoku
+
+}
+
+
+function isSolved(numberRand) {
+  const existedNumbers = [];
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      existedNumbers.push(numberRand[j][i]);
+      if (numberRand[j][i] === '-' || existedNumbers.includes(numberRand[j][i])) {
+        return false;
+      }
+    }
+  }
+
+  const existedNumbers1 = [];
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      existedNumbers1.push(numberRand[i][j]);
+      if (numberRand[i][j] === '-' || existedNumbers.includes(numberRand[i][j])) {
+        console.log(numberRand[i][j]);
+
+        return false;
+      }
+    }
+  }
+
+  console.log(existedNumbers1);
+  return true;
+}
+
+isSolved(solve(read()));
+
+function prettyBoard() {
+ 
+}
+
+function prettyBoard(board) {
 }
 
 const example = read()
@@ -20,9 +59,5 @@ const arr = example.split('');
 }
 
 console.table(solve(example))
-function isSolved() {
-}
 
-function prettyBoard() {
- 
-}
+

@@ -1,28 +1,28 @@
+const fs = require('fs');
+
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-  //УДАЧИ ЕЖИ
+  const puzzles = fs.readFileSync('./puzzles.txt', 'utf-8');
+  const sudokuPack = puzzles.split('\r\n');
+  const sudoku = sudokuPack[process.argv[2]];
+  return sudoku
 }
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+const example = read()
+
+function solve(example) {
+const arr = example.split('');
+  const board = [];
+  for (let i = 0; i < arr.length; i += 9) {
+    const arrMini = arr.slice(i, i + 9);
+    board.push(arrMini.map((el) => (isNaN(+el) ? 0 : +el)));
+  }
+  return board;
 }
 
+console.table(solve(example))
 function isSolved() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Возвращает булевое значение — решено это игровое поле или нет.
-   */
 }
 
 function prettyBoard() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Выводит в консоль/терминал судоку.
-   * Подумай, как симпатичнее его вывести.
-   */
+ 
 }

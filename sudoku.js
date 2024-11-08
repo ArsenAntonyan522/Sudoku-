@@ -64,34 +64,6 @@ function isSolved(numberRand) {
 isSolved(solve(read()));
 
 
-// function solveSudoku(board) {
-//   for (let i = 0; i < 9; i++) {
-//     for (let j = 0; j < 9; j++) {
-//       if (board[i][j] === '-') {
-//         for (let num = 1; num <= 9; num++) {
-//           const strNum = num.toString();
-//           if (isSolved(board, i, j, strNum)) {
-//             board[i][j] = strNum;
-
-
-//             if (solveSudoku(board)) {
-//               return true;
-//             }
-
-//             board[i][j] = '-';
-//           }
-//         }
-//         return false; 
-//       }
-//     }
-//   }
-//   return true; 
-// }
-
-// console.log(solveSudoku(solve(read())))
-
-
-
 
 function prettyBoard() {
   /**

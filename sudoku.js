@@ -1,12 +1,11 @@
+const { log } = require('console');
 const fs = require('fs');
 function read() {
   return fs.readFileSync('./puzzles.txt', 'utf-8');
 }
 
-const readFile = read();
-
-function solve(read) {
-  const string = read.slice(0, 81);
+function solve(line) {
+  const string = line.slice(0, 81);
 
   const firstString = string.slice(0, 9).split('');
   const secondString = string.slice(9, 18).split('');
@@ -31,14 +30,68 @@ function solve(read) {
   ];
   return boardLines;
 }
-console.table(solve(readFile));
 
-function isSolved() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Возвращает булевое значение — решено это игровое поле или нет.
-   */
+console.table(solve(read()));
+
+function isSolved(numberRand) {
+  const existedNumbers = [];
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      existedNumbers.push(numberRand[j][i]);
+      if (numberRand[j][i] === '-' || existedNumbers.includes(numberRand[j][i])) {
+        return false;
+      }
+    }
+  }
+
+  const existedNumbers1 = [];
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      existedNumbers1.push(numberRand[i][j]);
+      if (numberRand[i][j] === '-' || existedNumbers.includes(numberRand[i][j])) {
+        console.log(numberRand[i][j]);
+
+        return false;
+      }
+    }
+  }
+
+  console.log(existedNumbers1);
+  return true;
 }
+
+isSolved(solve(read()));
+
+
+// function solveSudoku(board) {
+//   for (let i = 0; i < 9; i++) {
+//     for (let j = 0; j < 9; j++) {
+//       if (board[i][j] === '-') {
+//         for (let num = 1; num <= 9; num++) {
+//           const strNum = num.toString();
+//           if (isSolved(board, i, j, strNum)) {
+//             board[i][j] = strNum;
+
+
+//             if (solveSudoku(board)) {
+//               return true;
+//             }
+
+//             board[i][j] = '-';
+//           }
+//         }
+//         return false; 
+//       }
+//     }
+//   }
+//   return true; 
+// }
+
+// console.log(solveSudoku(solve(read())))
+
+
+
 
 function prettyBoard() {
   /**
